@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #FFF8E7;
+    color: #111111;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* Neobrutalism Button Utilities */
+  .neo-btn {
+    @apply inline-flex items-center justify-center font-display font-bold px-5 py-2.5 rounded-lg border-2 border-ink transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .neo-btn-primary {
+    @apply neo-btn bg-neoYellow text-ink shadow-neo hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-neo-sm;
+  }
+
+  .neo-btn-secondary {
+    @apply neo-btn bg-white text-ink shadow-neo hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-neo-sm;
+  }
+
+  .neo-btn-destructive {
+    @apply neo-btn bg-neoCoral text-ink shadow-neo hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-neo-sm;
+  }
+
+  .neo-btn-success {
+    @apply neo-btn bg-neoGreen text-ink shadow-neo hover:-translate-y-0.5 hover:-translate-x-0.5 active:shadow-neo-sm;
+  }
+
+  /* Neobrutalism Card Utilities */
+  .neo-card {
+    @apply bg-white border-2 border-ink rounded-lg shadow-neo p-5 transition-all;
+  }
+
+  .neo-card-yellow {
+    @apply bg-neoYellow border-2 border-ink rounded-lg shadow-neo p-5;
+  }
+
+  .neo-card-blue {
+    @apply bg-neoBlue/15 border-2 border-ink rounded-lg shadow-neo p-5;
+  }
+
+  .neo-card-green {
+    @apply bg-neoGreen/20 border-2 border-ink rounded-lg shadow-neo p-5;
+  }
+
+  /* Neobrutalism Form Inputs */
+  .neo-input {
+    @apply w-full bg-white border-2 border-ink rounded-lg px-4 py-2.5 text-ink font-sans placeholder:text-ink/50 focus:outline-none focus:ring-2 focus:ring-neoBlue shadow-neo-sm transition-all;
+  }
+
+  /* Neobrutalism Badges */
+  .neo-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border-2 border-ink text-xs font-display font-bold uppercase tracking-wider shadow-neo-sm;
+  }
+}
