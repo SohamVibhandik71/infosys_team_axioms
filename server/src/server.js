@@ -1,14 +1,22 @@
-import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
+import app from './app.js';
+import { env } from './config/env.js';
+import { logger } from './utils/logger.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+const PORT = env.PORT || 5000;
 
-import app from "./app.js";
+const server = app.listen(PORT, () => {
+  logger.info(`MeetingOS Server running in ${env.NODE_ENV} mode on port ${PORT}`);
+  logger.info(`Health check available at http://localhost:${PORT}/api/health`);
+});
 
-const PORT = process.env.PORT || 5000;
+// Process signal handling
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received. Shutting down gracefully...');
+  server.close(() => {
+    logger.info('Process terminated.');
+  });
+});
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled Promise Rejection:', reason);
 });
