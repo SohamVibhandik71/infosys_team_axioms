@@ -1,20 +1,39 @@
 {
-  "name": "my-MERN-template",
+  "name": "meetingos-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "MeetingOS Backend - AI-Powered Meeting Intelligence",
   "type": "module",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "migrate": "node sql/migrate.js",
+    "test": "node --test"
   },
+  "keywords": [
+    "meetingos",
+    "ai",
+    "qualcomm",
+    "meetings",
+    "express",
+    "postgres"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.20.0",
-    "cors": "^2.8.6",
-    "dotenv": "^18.0.5",
-    "express": "^5.2.1",
-    "nodemon": "^3.1.14"
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.13.0",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.13.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
