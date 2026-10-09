@@ -13,8 +13,27 @@ import dependencyRoutes from './routes/dependencyRoutes.js';
 const app = express();
 
 // Security & CORS Middleware
+const allowedOrigins = env.CLIENT_URL 
+  ? env.CLIENT_URL.split(',').map(u => u.trim().replace(/\/$/, '')) 
+  : ['http://localhost:5173'];
+
 app.use(cors({
-  origin: env.CLIENT_URL || '*',
+  origin: (origin, callback) => {
+    // Allow server-to-server or non-browser requests
+    if (!origin) return callback(null, true);
+    
+    // Check if origin matches allowed list or is a Render deployment
+    if (
+      allowedOrigins.includes('*') ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.onrender.com') ||
+      origin.includes('localhost')
+    ) {
+      return callback(null, true);
+    }
+    
+    callback(null, true);
+  },
   credentials: true
 }));
 
