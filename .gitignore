@@ -1,6 +1,11 @@
 # Dependencies
 node_modules/
 
+# Docs & Temp
+docs/
+vercel.json
+client/vercel.json
+
 # Vite Cache
 .vite/
 client/.vite/
