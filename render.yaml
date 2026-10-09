@@ -1,0 +1,50 @@
+services:
+  # -------------------------------------------------------------
+  # 1. Express Backend Web Service
+  # -------------------------------------------------------------
+  - type: web
+    name: meetingos-server
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: QUALCOMM_AI_BASE_URL
+        value: https://aisuite.cirrascale.com/apis/v2
+      - key: QUALCOMM_AI_API_KEY
+        sync: false
+      - key: QUALCOMM_AI_MODEL
+        value: Llama-3.1-8B
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_WHISPER_MODEL
+        value: whisper-large-v3
+      - key: MAX_FILE_SIZE_MB
+        value: "50"
+      - key: DATABASE_URL
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+
+  # -------------------------------------------------------------
+  # 2. React (Vite) Frontend Static Site
+  # -------------------------------------------------------------
+  - type: web
+    name: meetingos-client
+    runtime: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false
