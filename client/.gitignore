@@ -12,10 +12,11 @@ node_modules/
 *.env
 !*.env.example
 
-# Build outputs
+# Build outputs & Cache
 dist/
 dist-ssr/
 build/
+.vite/
 *.local
 
 # Logs
